@@ -38,3 +38,26 @@ def query_character_hates(character_name, conn)
   puts "HATES:"
   print_result(res)
 end
+
+def query_weight_difference(char_one, char_two)
+  char_one = char_one.capitalize
+  char_two = char_two.capitalize
+
+  conn = connect_to_database(ENV['PGDB'])
+
+  res_one = conn.exec("SELECT weight 
+    FROM characters
+    WHERE characters.name = '#{char_one}';
+  ")
+
+  res_two = conn.exec("SELECT weight 
+    FROM characters
+    WHERE characters.name = '#{char_two}';
+  ")
+
+  diff = (res_one[0]['weight'].to_i - res_two[0]['weight'].to_i).abs
+
+  pp "The weight difference between #{char_one} and #{char_two} is #{diff} lbs."
+
+  conn.close
+end

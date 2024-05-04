@@ -22,7 +22,13 @@ def main
     character = ARGV[0]
     query_character(character)
   elsif ARGV.length == 2
-    character, ex = ARGV
+    command, arg1 = ARGV[0], ARGV[1]
+  elsif ARGV.length == 3 
+    command, arg1, arg2 = ARGV[0], ARGV[1], ARGV[2]
+
+    if command == "weight-diff"
+      query_weight_difference(arg1, arg2)
+    end
   end
 end
 
@@ -46,8 +52,9 @@ def help_message
     USAGE: ruby main.rb [arguments]
 
     FEATURES:
-      No Args:   Query basic character info
-      Character: Query info for a specific character
+      No Args:           Query basic character info
+      Character:         Query info for a specific character
+      Weight Difference: Query weight difference between two characters
 
   HELP
 end
