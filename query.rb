@@ -22,7 +22,7 @@ end
 def query_character_likes(character_name, conn)
   res = conn.exec("SELECT likes.*
     FROM characters
-    JOIN likes ON characters.id = likes.character_id
+    JOIN likes ON characters.character_id = likes.character_id
     WHERE characters.name = '#{character_name}';
   ")
   puts "LIKES:"
@@ -32,7 +32,7 @@ end
 def query_character_hates(character_name, conn)
   res = conn.exec("SELECT hates.*
     FROM characters
-    JOIN hates ON characters.id = hates.character_id
+    JOIN hates ON characters.character_id = hates.character_id
     WHERE characters.name = '#{character_name}';
   ")
   puts "HATES:"

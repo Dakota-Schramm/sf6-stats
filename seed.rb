@@ -16,7 +16,7 @@ end
 
 def create_characters_table(conn)
   conn.exec("CREATE TABLE IF NOT EXISTS characters (
-    id SERIAL PRIMARY KEY,
+    character_id SERIAL PRIMARY KEY,
     name VARCHAR(50) NOT NULL,
     height SMALLINT, 
     weight SMALLINT)
@@ -50,8 +50,8 @@ end
 
 def create_character_likes_table(conn)
   conn.exec("CREATE TABLE IF NOT EXISTS likes (
-    id SERIAL PRIMARY KEY,
-    character_id INTEGER references characters(id) NOT NULL,
+    like_id SERIAL PRIMARY KEY,
+    character_id INTEGER references characters(character_id) NOT NULL,
     thing VARCHAR(50) NOT NULL)
   ")
 
@@ -110,8 +110,8 @@ end
 
 def create_character_hates_table(conn)
   conn.exec("CREATE TABLE IF NOT EXISTS hates (
-    id SERIAL PRIMARY KEY,
-    character_id INTEGER references characters(id) NOT NULL,
+    hate_id SERIAL PRIMARY KEY,
+    character_id INTEGER references characters(character_id) NOT NULL,
     thing VARCHAR(50) NOT NULL)
   ")
 
