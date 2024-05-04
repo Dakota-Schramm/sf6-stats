@@ -1,0 +1,15 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    dotenv (3.1.1)
+    pg (1.5.6)
+
+PLATFORMS
+  arm64-darwin-22
+
+DEPENDENCIES
+  dotenv
+  pg
+
+BUNDLED WITH
+   2.4.6
