@@ -17,7 +17,7 @@ end
 def create_characters_table(conn)
   conn.exec("CREATE TABLE IF NOT EXISTS characters (
     character_id SERIAL PRIMARY KEY,
-    name VARCHAR(50) NOT NULL,
+    name VARCHAR(50) NOT NULL UNIQUE,
     height SMALLINT, 
     weight SMALLINT)
   ")
