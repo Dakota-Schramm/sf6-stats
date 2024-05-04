@@ -15,6 +15,10 @@ def main
   if ARGV.length == 0
     query_characters
   elsif ARGV.length == 1
+    if ARGV[0] == "help" || ARGV[0] == "--help"
+      puts help_message
+      return
+    end
     character = ARGV
   elsif ARGV.length == 2
     character, ex = ARGV
@@ -36,5 +40,14 @@ def init_database(db_name)
   conn.close
 end
 
+def help_message
+  <<~HELP
+    USAGE: ruby main.rb [arguments]
+
+    FEATURES:
+      No Args:  Query basic character info
+
+  HELP
+end
 
 main
