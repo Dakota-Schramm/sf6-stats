@@ -19,7 +19,8 @@ def main
       puts help_message
       return
     end
-    character = ARGV
+    character = ARGV[0]
+    query_character(character)
   elsif ARGV.length == 2
     character, ex = ARGV
   end

@@ -6,9 +6,17 @@ def seed_database(db_name)
   conn = connect_to_database(db_name)
   # Seed the database with initial data
   # You can execute SQL commands to insert data here
+  # Add more seed data as needed
+  create_characters_table(conn)
+  create_character_likes_table(conn)
+
+  conn.close
+end
+
+def create_characters_table(conn)
   conn.exec("CREATE TABLE IF NOT EXISTS characters (
     id SERIAL PRIMARY KEY,
-    name VARCHAR(50),
+    name VARCHAR(50) NOT NULL,
     height SMALLINT, 
     weight SMALLINT)
   ")
@@ -37,7 +45,18 @@ def seed_database(db_name)
              ('Ed', 72, 190),
              ('Akuma', 70, 198)
             ")
-  # Add more seed data as needed
+end
 
-  conn.close
+def create_character_likes_table(conn)
+  conn.exec("CREATE TABLE IF NOT EXISTS likes (
+    id SERIAL PRIMARY KEY,
+    character_id INTEGER references characters(id),
+    thing VARCHAR(50) NOT NULL)
+  ")
+
+  conn.exec("INSERT INTO likes (character_id, thing)
+             VALUES
+             (1, 'Samantha'),
+             (1, 'Blanka-chan Dolls')
+            ")
 end
