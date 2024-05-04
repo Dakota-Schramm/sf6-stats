@@ -9,6 +9,7 @@ def seed_database(db_name)
   # Add more seed data as needed
   create_characters_table(conn)
   create_character_likes_table(conn)
+  create_character_hates_table(conn)
 
   conn.close
 end
@@ -103,7 +104,7 @@ def create_character_likes_table(conn)
              (20, 'Master F.A.N.G.'),
              (21, 'boxing'),
              (21, 'landslide victories'),
-             (22, 'unknown'),
+             (22, 'unknown')
             ")
 end
 
@@ -149,7 +150,7 @@ def create_character_hates_table(conn)
              (21, 'idealists'),
              (21, 'M. Bison'),
              (21, 'needles'),
-             (22, 'unknown'),
+             (22, 'unknown')
             ")
 end
 
