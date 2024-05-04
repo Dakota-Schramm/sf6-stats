@@ -5,18 +5,20 @@ require 'dotenv'
 
 require "./pg_helpers"
 require "./seed" 
+require "./query"
 
 def main
   Dotenv.load('.env', ".env.local")
 
   init_database(ENV['PGDB'])
 
-  # res  = conn.exec('select tablename, tableowner from pg_tables')
-
-  # res.each do |row|
-  #   puts row['tablename'] + ' | ' + row['tableowner']
-  # end
-
+  if ARGV.length == 0
+    query_characters
+  elsif ARGV.length == 1
+    character = ARGV
+  elsif ARGV.length == 2
+    character, ex = ARGV
+  end
 end
 
 def init_database(db_name)
@@ -34,15 +36,5 @@ def init_database(db_name)
   conn.close
 end
 
-def database_exists?(conn, db_name)
-  # Check if the database exists
-  result = conn.exec("SELECT 1 FROM pg_database WHERE datname = '#{db_name}'")
-  return 0 < result.num_tuples
-end
-
-def create_database(conn, db_name)
-  # Create the database
-  conn.exec("CREATE DATABASE #{db_name}")
-end
 
 main
