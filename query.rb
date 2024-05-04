@@ -61,3 +61,26 @@ def query_weight_difference(char_one, char_two)
 
   conn.close
 end
+
+def query_height_difference(char_one, char_two)
+  char_one = char_one.capitalize
+  char_two = char_two.capitalize
+
+  conn = connect_to_database(ENV['PGDB'])
+
+  res_one = conn.exec("SELECT height 
+    FROM characters
+    WHERE characters.name = '#{char_one}';
+  ")
+
+  res_two = conn.exec("SELECT height 
+    FROM characters
+    WHERE characters.name = '#{char_two}';
+  ")
+
+  diff = (res_one[0]['height'].to_i - res_two[0]['height'].to_i).abs
+
+  pp "The height difference between #{char_one} and #{char_two} is #{diff} inches."
+
+  conn.close
+end

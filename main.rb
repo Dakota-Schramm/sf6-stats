@@ -28,6 +28,8 @@ def main
 
     if command == "weight-diff"
       query_weight_difference(arg1, arg2)
+    elsif command == "height-diff"
+      query_height_difference(arg1, arg2)
     end
   end
 end
