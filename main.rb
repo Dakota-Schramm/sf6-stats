@@ -46,7 +46,8 @@ def help_message
     USAGE: ruby main.rb [arguments]
 
     FEATURES:
-      No Args:  Query basic character info
+      No Args:   Query basic character info
+      Character: Query info for a specific character
 
   HELP
 end
